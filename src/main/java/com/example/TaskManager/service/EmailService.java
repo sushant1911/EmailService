@@ -1,6 +1,5 @@
-package com.sushant.mailservice.MailService.service;
-
-import com.sushant.mailservice.MailService.dto.EMailRequest;
+package com.example.TaskManager.service;
+import com.example.TaskManager.dto.TaskResponseDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +13,25 @@ import org.springframework.stereotype.Service;
 public class EmailService {
     private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
-    @Autowired
+    @Autowired(required=true)
     private JavaMailSender javaMailSender;
 
     @Value("${spring.mail.username}")
     private String sender;
 
-    public String sendEmail(EMailRequest request) {
+    public String sendEmail(TaskResponseDTO task) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(sender);
-        mailMessage.setTo(request.getToEmail());
-        mailMessage.setSubject(request.getEmailSubject());
-        mailMessage.setText(request.getEmailBody());
+        mailMessage.setTo("sushantsuman1911@gmail.com");
+        mailMessage.setSubject(task.toString());
+        mailMessage.setText(task.toString());
 
         try {
             javaMailSender.send(mailMessage);
-            return "Email successfully sent to " + request.getToEmail();
+            return "Email successfully sent to " + task+"sushantsuman1911@gmail.com";
         } catch (MailException ex) {
-            logger.error("Error sending email to " + request.getToEmail(), ex);
-            return "Failed to send email to " + request.getToEmail() + ": " + ex.getMessage();
+            logger.error("Error sending email to " + task.toString(), ex);
+            return "Failed to send email to " + task.toString()+ ": " + ex.getMessage();
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.sushant.mailservice.MailService;
+package com.example.TaskManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

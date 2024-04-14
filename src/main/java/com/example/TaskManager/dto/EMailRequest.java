@@ -1,4 +1,4 @@
-package com.sushant.mailservice.MailService.dto;
+package com.example.TaskManager.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
